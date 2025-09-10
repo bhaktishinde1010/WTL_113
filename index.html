@@ -1,140 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MyBlog - Home</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Stylish font -->
+  <meta charset="UTF-8" />
+  <title>ToDo Kids 🌈</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <style>
+    * {
+      font-family: 'Fredoka One', 'Comic Neue', cursive;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('images/background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to bottom, #f5f7fa, #eef2f5);
+      overflow-x: hidden;
+      min-height: 100vh;
     }
-
-    /* Sparkling moving effect for title */
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-      background: linear-gradient(270deg, #ffffff, #ffc107, #ffffff);
-      background-size: 600% 600%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 5s infinite linear;
+    section {
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: none;
     }
-
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    section.active {
+      display: block;
+      animation: fadeIn 0.8s ease-in-out;
     }
-
-    /* Header background with local image */
-    header {
-      background: url('images/header-bg.jpg') no-repeat center center;
-      background-size: cover;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #home {
+      background: url('https://cdn.magicdecor.in/com/2023/02/30003054/image-1681203942-3390.jpg') center/cover no-repeat;
       position: relative;
     }
-
-    header .container {
-      background-color: rgba(13, 110, 253, 0.75); /* Bootstrap Primary with transparency */
-      padding: 4rem 2rem;
-      border-radius: 15px;
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
     }
-
-    /* Moving stylish welcome text */
-    .moving-title {
-      font-family: 'Pacifico', cursive;
-      font-size: 3.2rem;
-      font-weight: 700;
-      color: darkblue;
-      text-shadow: 2px 2px 5px rgba(255,255,255,0.7);
-      animation: slideText 5s infinite ease-in-out;
+    #home .container {
+      position: relative;
+      z-index: 1;
     }
-
-    @keyframes slideText {
-      0% { transform: translateX(-30px); }
-      50% { transform: translateX(30px); }
-      100% { transform: translateX(-30px); }
+    .navbar {
+      background: linear-gradient(to right, #6a89cc, #82ccdd);
+      box-shadow: 0 4px 15px rgba(106,137,204,0.3);
     }
-
+    .navbar-brand {
+      font-size: 2rem;
+      animation: popIn 1s;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      color: white;
+    }
     .nav-link {
-      font-weight: 500;
-      transition: color 0.3s ease;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s, text-shadow 0.3s;
+      color: white !important;
     }
-
     .nav-link:hover {
-      color: #ffc107 !important;
+      transform: scale(1.1);
+      text-shadow: 0 0 8px rgba(255,255,255,0.8);
     }
-
-    /* About Section */
-    .about-section {
-      padding: 3rem 1rem;
-      background-color: rgba(248, 249, 250, 0.9); /* Light background with transparency */
+    #home h1 {
+      font-size: 3.5rem;
+      color: #4a69bd;
+      text-shadow: 3px 3px 0 #d1d8e0;
+      animation: bounce 1s ease-in-out infinite alternate;
+      margin-bottom: 30px;
+    }
+    #home p {
+      font-size: 1.5rem;
+      color: #4d4d4d;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0) rotate(-2deg); }
+      100% { transform: translateY(-15px) rotate(2deg); }
+    }
+    #login {
+      background: url('https://t3.ftcdn.net/jpg/02/09/64/60/360_F_209646036_ToQt0ASLYWlE6qY7UlgUqqtwv2aM3RJN.jpg') center/cover;
+      position: relative;
+    }
+    #login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    #login .container {
+      position: relative;
+      z-index: 1;
+    }
+    #login h2 {
+      color: #4a69bd;
+      text-shadow: 2px 2px 0 #d1d8e0;
+      font-size: 2.5rem;
+      animation: swing 3s ease-in-out infinite;
+    }
+    @keyframes swing {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+    #login form {
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(74,105,189,0.2);
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    #login form:hover {
+      transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+    }
+    #login form input {
+      border-radius: 15px;
+      border: 3px solid #6a89cc;
+      background-color: #f8fafc;
+      font-size: 1.2rem;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    #login form input:focus {
+      box-shadow: 0 0 15px #6a89cc;
+      border-color: #4a69bd;
+      transform: scale(1.02);
+    }
+    #login form input::placeholder {
+      color: #a5b1c2;
+    }
+    #login form button {
+      background: linear-gradient(to right, #6a89cc, #82ccdd);
+      border: none;
+      border-radius: 15px;
+      padding: 12px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(106,137,204,0.4);
+      transition: all 0.3s;
+      animation: pulse 1.5s infinite;
+    }
+    #login form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(106,137,204,0.6);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .task-card {
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(106,137,204,0.2);
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+      border-left: 5px solid #6a89cc;
+    }
+    .task-card:hover {
+      transform: scale(1.03) translateY(-5px);
+      box-shadow: 0 12px 25px rgba(106,137,204,0.3);
+    }
+    .task-card.done {
+      border-left-color: #38ada9;
+      background: #f8ffff;
+    }
+    .video-bg {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+    }
+    #musicToggle {
+      position: fixed;
+      top: 80px;
+      right: 15px;
+      z-index: 999;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #6a89cc, #82ccdd);
+      border: none;
+      box-shadow: 0 4px 10px rgba(106,137,204,0.4);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: white;
+    }
+    #musicToggle:hover {
+      transform: scale(1.1) rotate(15deg);
+    }
+    #dashboard {
+      background: url('https://static.vecteezy.com/system/resources/thumbnails/000/913/532/small_2x/cartoon-children-playing-around-books.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    #dashboard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+    #dashboard .container {
+      position: relative;
+      z-index: 1;
+    }
+    #dashboard h2 {
+      color: #4a69bd;
+      font-weight: bold;
+      margin-bottom: 30px;
       text-align: center;
-      border-radius: 12px;
-      margin: 2rem;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 0 #d1d8e0;
     }
-
-    .about-section h2 {
-      color: #0d6efd;
-      font-weight: 600;
-      margin-bottom: 1rem;
+    #dashboard h4 {
+      color: #6a89cc;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      padding-bottom: 10px;
+      border-bottom: 3px dashed #6a89cc;
     }
-
-    .about-section p {
-      max-width: 850px;
-      margin: auto;
+    #taskInput {
+      animation: glow 2s ease-in-out infinite alternate;
+      border-radius: 15px;
+      border: 3px solid #6a89cc;
+      padding: 15px;
+      font-size: 1.2rem;
+    }
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px #6a89cc;
+      }
+      to {
+        box-shadow: 0 0 20px #4a69bd;
+      }
+    }
+    #dashboard button {
+      border-radius: 15px;
       font-size: 1.1rem;
-      line-height: 1.9;
-      color: #333;
+      padding: 10px 20px;
+      transition: all 0.3s;
+    }
+    #dashboard button:hover {
+      transform: translateY(-3px);
+    }
+    .btn-success {
+      background: linear-gradient(to right, #38ada9, #78e08f);
+      border: none;
+    }
+    .btn-outline-info {
+      border-color: #4dabf7;
+      color: #4dabf7;
+    }
+    .btn-outline-danger {
+      border-color: #e55039;
+      color: #e55039;
+    }
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.9rem;
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #6a89cc;
+      opacity: 0;
+      z-index: 9999;
+      animation: confetti 5s ease-in-out;
+    }
+    @keyframes confetti {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    .reward-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.5);
+      z-index: 10000;
+      display: none;
+    }
+    .reward-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      animation: rewardPop 0.5s;
+    }
+    @keyframes rewardPop {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .star-rating {
+      font-size: 2rem;
+      color: #f6b93b;
+      text-shadow: 0 0 5px rgba(246,185,59,0.5);
+      margin: 10px 0;
+    }
+    .alert-info {
+      background-color: #d1d8e0;
+      border-color: #a5b1c2;
+    }
+    .alert-light {
+      background-color: #f1f2f6;
+      border-color: #dfe4ea;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <!-- 🔊 Background Music Toggle -->
+  <button id="musicToggle" class="shadow"><b>🎵</b></button>
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- 🎨 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Wonder Thoughts</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <a class="navbar-brand fw-bold" href="#">🌈 ToDo Kids</a>
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="signup.html">Signup</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="showSection('home')">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="showSection('login')">🔐 Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="showSection('dashboard')">📚 Dashboard</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="text-center py-5">
-    <div class="container">
-      <h1 class="moving-title">Welcome to Wonder Thoughts</h1>
-      <p class="lead">Unleash your creativity, one thought at a time.</p>
-    </div>
-  </header>
+  <!-- 🎥 Animated Background Video -->
+  <video autoplay muted loop class="video-bg">
+    <source src="https://cdn.pixabay.com/video/2023/05/19/173323-824716750_tiny.mp4" type="video/mp4">
+  </video>
 
-  <!-- About Section -->
-  <section class="about-section">
+  <!-- 🏡 Home Page -->
+  <section id="home" class="active text-center">
     <div class="container">
-      <h2>About the Wonder Thoughts</h2>
-      <p>
-        Wonder Thoughts is a vibrant blogging space for passionate writers, thinkers, and innovators.
-        Whether you're a poet, techie, traveler, or dreamer, this platform gives your words a voice.
-        Dive into a world of imagination, learning, and expression where every thought matters.
-      </p>
+      <h1>Welcome to 🌟 ToDo Kids 🌟</h1>
+      <p class="lead">The Most Fun Way to Organize Your School Tasks! 🎒📚</p>
+      <div id="homeAnimation" style="height: 300px;"></div>
+      <button class="btn btn-lg mt-4" style="background: linear-gradient(to right, #6a89cc, #82ccdd); color: white;" onclick="showSection('login')">
+        Let's Get Started! 🚀
+      </button>
     </div>
   </section>
 
-  <!-- Bootstrap Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 🔐 Login/Signup Page -->
+  <section id="login" class="text-center">
+    <div class="container">
+      <h2>🔐 Sign In / Sign Up</h2>
+      <form class="container mt-4" style="max-width: 400px;">
+        <input type="text" id="username" placeholder="Your Name 👦👧" class="form-control mb-3" />
+        <input type="password" id="password" placeholder="Password 🔒" class="form-control mb-3" />
+        <button type="button" class="btn btn-primary w-100" onclick="login()">Enter 🚀</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 🧾 Dashboard Page -->
+  <section id="dashboard">
+    <div class="container">
+      <h2>📚 Your Task Dashboard</h2>
+      <div class="mb-4">
+        <input type="text" id="taskInput" class="form-control" placeholder="✏️ Enter new task (e.g. 'Do math homework')" />
+        <button class="btn btn-success mt-3" onclick="addTask()">Add Task ➕</button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>📌 Pending Tasks</h4>
+          <div id="pendingTasks"></div>
+        </div>
+        <div class="col-md-6">
+          <h4>✅ Done Tasks</h4>
+          <div id="doneTasks"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🎉 Reward Popup -->
+  <div class="reward-container" id="rewardPopup">
+    <div class="reward-content">
+      <h2>🎉 Great Job! 🎉</h2>
+      <p>You completed a task!</p>
+      <div class="star-rating">⭐⭐⭐⭐⭐</div>
+      <button class="btn btn-primary" onclick="closeReward()">Yay! 🎊</button>
+    </div>
+  </div>
+
+  <!-- 🎉 Scripts -->
+  <script>
+    // Lottie home animation
+    lottie.loadAnimation({
+      container: document.getElementById('homeAnimation'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets5.lottiefiles.com/packages/lf20_1pxqjqps.json'
+    });
+
+    // Show sections
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    let taskList = [];
+    let completedTasksCount = 0;
+
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const taskText = taskInput.value.trim();
+      if (taskText !== "") {
+        taskList.push({ text: taskText, done: false });
+        taskInput.value = "";
+        renderTasks();
+        // Play add sound
+        playSound('https://www.soundjay.com/buttons/sounds/button-09.mp3');
+      }
+    }
+
+    function toggleTask(index) {
+      const wasDone = taskList[index].done;
+      taskList[index].done = !taskList[index].done;
+      renderTasks();
+      
+      if (!wasDone && taskList[index].done) {
+        completedTasksCount++;
+        playSound('https://www.soundjay.com/buttons/sounds/button-21.mp3');
+        showReward();
+        
+        // Create confetti
+        for (let i = 0; i < 50; i++) {
+          createConfetti();
+        }
+      }
+    }
+
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      confetti.style.width = Math.random() * 10 + 5 + 'px';
+      confetti.style.height = Math.random() * 10 + 5 + 'px';
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+
+    function showReward() {
+      if (completedTasksCount % 3 === 0) { // Show reward every 3 completed tasks
+        document.getElementById('rewardPopup').style.display = 'flex';
+      }
+    }
+
+    function closeReward() {
+      document.getElementById('rewardPopup').style.display = 'none';
+      playSound('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+    }
+
+    function playSound(url) {
+      const audio = new Audio(url);
+      audio.play();
+    }
+
+    function editTask(index) {
+      const newText = prompt("Edit your task:", taskList[index].text);
+      if (newText) {
+        taskList[index].text = newText;
+        renderTasks();
+      }
+    }
+
+    function deleteTask(index) {
+      if (confirm("Are you sure you want to delete this task?")) {
+        taskList.splice(index, 1);
+        renderTasks();
+        playSound('https://www.soundjay.com/buttons/sounds/button-18.mp3');
+      }
+    }
+
+    function renderTasks() {
+      const pendingDiv = document.getElementById("pendingTasks");
+      const doneDiv = document.getElementById("doneTasks");
+      pendingDiv.innerHTML = "";
+      doneDiv.innerHTML = "";
+
+      if (taskList.length === 0) {
+        pendingDiv.innerHTML = `<div class="alert alert-info">No tasks yet! Add your first task above. ✨</div>`;
+        doneDiv.innerHTML = `<div class="alert alert-light">Completed tasks will appear here. ✅</div>`;
+        return;
+      }
+
+      taskList.forEach((task, index) => {
+        const card = document.createElement("div");
+        card.className = `task-card ${task.done ? 'done' : ''}`;
+
+        card.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center">
+            <div style="flex-grow: 1;">
+              <input type="checkbox" ${task.done ? "checked" : ""} onchange="toggleTask(${index})">
+              <span class="${task.done ? 'text-decoration-line-through text-muted' : ''}" style="font-size: 1.1rem;">${task.text}</span>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-info me-1" onclick="editTask(${index})">✏️ Edit</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="deleteTask(${index})">🗑️ Delete</button>
+            </div>
+          </div>
+        `;
+
+        if (task.done) doneDiv.appendChild(card);
+        else pendingDiv.appendChild(card);
+      });
+    }
+
+    function login() {
+      const name = document.getElementById("username").value;
+      if (name.trim()) {
+        playSound('https://www.soundjay.com/buttons/sounds/button-21.mp3');
+        alert(`Welcome ${name}! 🎉 Let's get organized!`);
+        showSection("dashboard");
+      } else {
+        alert("Please enter your name to continue! 👦👧");
+      }
+    }
+
+    // 🎵 Music toggle
+    const music = document.getElementById("bgMusic");
+    document.getElementById("musicToggle").addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        document.getElementById("musicToggle").innerHTML = '<b>🔊</b>';
+      } else {
+        music.pause();
+        document.getElementById("musicToggle").innerHTML = '<b>🔇</b>';
+      }
+    });
+
+    // Default to home
+    showSection("home");
+  </script>
 </body>
 </html>
