@@ -1,0 +1,132 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Educational Blogging</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #e8f4fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .blog-form {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+    .blog-list {
+      margin-top: 40px;
+    }
+    .blog-post {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2 class="text-success mb-4">🎓 Educational Blog</h2>
+
+    <!-- Blog Writing Form -->
+    <div class="blog-form">
+      <h4>Upload Your Educational Blog</h4>
+      <form id="blogForm">
+        <div class="mb-3">
+          <label for="title" class="form-label">Blog Title</label>
+          <input type="text" id="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Blog Content</label>
+          <textarea id="content" rows="4" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="video" class="form-label">Upload Video Blog (Optional)</label>
+          <input type="file" id="video" accept="video/*" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Post Blog</button>
+      </form>
+    </div>
+
+    <!-- All Blogs -->
+    <div class="blog-list">
+      <h4 class="mt-5">📚 All Educational Blogs</h4>
+      <div id="allBlogsContainer"></div>
+
+      <h4 class="mt-5">👩‍🏫 Your Educational Blogs</h4>
+      <div id="userBlogsContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const blogForm = document.getElementById('blogForm');
+    const allBlogsContainer = document.getElementById('allBlogsContainer');
+    const userBlogsContainer = document.getElementById('userBlogsContainer');
+    let allBlogs = JSON.parse(localStorage.getItem('eduBlogs')) || [];
+
+    blogForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const videoFile = document.getElementById('video').files[0];
+
+      if (videoFile) {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          saveBlog(title, content, reader.result);
+        };
+        reader.readAsDataURL(videoFile);
+      } else {
+        saveBlog(title, content, null);
+      }
+    });
+
+    function saveBlog(title, content, videoURL) {
+      const newBlog = {
+        title,
+        content,
+        video: videoURL,
+        author: "Bhakti", // Dynamic if logged-in system used
+        time: new Date().toLocaleString()
+      };
+
+      allBlogs.unshift(newBlog);
+      localStorage.setItem('eduBlogs', JSON.stringify(allBlogs));
+      blogForm.reset();
+      renderBlogs();
+    }
+
+    function renderBlogs() {
+      allBlogsContainer.innerHTML = '';
+      userBlogsContainer.innerHTML = '';
+
+      allBlogs.forEach(blog => {
+        const blogHTML = `
+          <div class="blog-post">
+            <h5>${blog.title}</h5>
+            <p class="text-muted"><i>by ${blog.author} on ${blog.time}</i></p>
+            <p>${blog.content}</p>
+            ${blog.video ? `<video controls src="${blog.video}"></video>` : ''}
+          </div>
+        `;
+        allBlogsContainer.innerHTML += blogHTML;
+
+        if (blog.author === "Bhakti") {
+          userBlogsContainer.innerHTML += blogHTML;
+        }
+      });
+    }
+
+    renderBlogs();
+  </script>
+</body>
+</html>
