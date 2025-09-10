@@ -1,11 +1,16 @@
 body {
+  background-color: #f0f8ff;
   font-family: 'Segoe UI', sans-serif;
 }
 
 .card {
-  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.btn {
-  border-radius: 25px;
+#dashboard h2 {
+  color: #333;
+}
+
+input[type="text"], input[type="password"] {
+  border-radius: 10px;
 }
