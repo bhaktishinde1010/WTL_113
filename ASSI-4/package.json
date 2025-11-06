@@ -1,0 +1,14 @@
+{
+  "name": "student-manager",
+  "version": "1.0.0",
+  "description": "Student Manager Application with TypeScript and MySQL",
+  "main": "dist/student.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.13",
+    "typescript": "^5.9.2"
+  }
+}
